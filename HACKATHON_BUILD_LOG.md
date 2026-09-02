@@ -2,7 +2,7 @@
 
 The WebMCP Challenge submission period runs from August 25 through September 3, 2026. Meant’s eligible implementation work began on August 27, 2026.
 
-Meant builds on earlier design-editor and transaction-protocol experiments. The hackathon work is the conversational-composition product and its agent-native contract.
+Meant is a new product created during the WebMCP Challenge. It applies lessons from earlier, separate design-editor and transaction-protocol experiments, but the Meant product, brand, conversational creative loop, WebMCP surface, hosted application, and submission media were built for this challenge.
 
 ## What changed during the challenge
 
