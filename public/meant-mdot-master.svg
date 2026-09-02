@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Meant m-dot logo</title>
+  <desc id="desc">A custom lowercase m in Carbon followed by the Proof-coral dot.</desc>
+  <path fill="#191816" d="M70 650V235c0-24 19-43 43-43h65c24 0 43 19 43 43v45c39-65 104-103 180-103 90 0 152 43 185 115 46-77 113-115 196-115 131 0 202 93 202 230v243H824V425c0-75-30-110-90-110-65 0-107 43-107 123v212H467V425c0-75-30-110-90-110-65 0-107 43-107 123v212H70Z"/>
+  <circle fill="#F04B32" cx="1090" cy="590" r="60"/>
+</svg>

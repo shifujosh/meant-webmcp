@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "meant-webmcp",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": ["**/*.js", "**/*.mjs"]
+    }
+  ],
+  "assets": {
+    "directory": "dist/client"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "meant-webmcp",
+      "database_id": "07e6b831-1260-4454-af70-f5cf6ef15456"
+    }
+  ],
+  "vars": {
+    "NODE_ENV": "production",
+    "MEANT_ENABLE_REALTIME_VOICE": "false",
+    "MEANT_ENABLE_RECORDED_TRANSCRIPTION": "false"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

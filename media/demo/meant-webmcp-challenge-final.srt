@@ -1,0 +1,136 @@
+1
+00:00:00,000 --> 00:00:01,733
+You already know what you want to make.
+
+2
+00:00:01,733 --> 00:00:04,467
+The hard part is getting the software to understand it.
+
+3
+00:00:04,633 --> 00:00:11,267
+Traditional creative tools ask you to learn a cockpit of layers, panels, coordinates,
+
+4
+00:00:11,267 --> 00:00:13,133
+and hidden rules before you can shape the idea.
+
+5
+00:00:13,133 --> 00:00:14,933
+One-shot creative agents promise a shortcut,
+
+6
+00:00:14,933 --> 00:00:17,267
+but when they cannot reach the real canvas, they still hand back a guess.
+
+7
+00:00:17,700 --> 00:00:18,533
+Meant changes that.
+
+8
+00:00:18,933 --> 00:00:21,067
+This isn’t a chatbot sitting beside your work.
+
+9
+00:00:21,500 --> 00:00:26,533
+With WebMCP, the agent works on the same selected object, inside the same artifact,
+
+10
+00:00:26,533 --> 00:00:29,600
+through the same bounded creative tools you use.
+
+11
+00:00:30,133 --> 00:00:33,067
+You describe the outcome in your own words, and the idea takes shape
+
+12
+00:00:33,067 --> 00:00:36,367
+where you can see it, touch it, and continue shaping it.
+
+13
+00:00:37,133 --> 00:00:39,000
+Every proposal begins in Exploring.
+
+14
+00:00:39,500 --> 00:00:40,733
+It appears on the canvas, but it stays temporary.
+
+15
+00:00:41,200 --> 00:00:46,000
+You can refine it conversationally, compare it beside the version you already trust,
+
+16
+00:00:46,000 --> 00:00:49,333
+or discard it without disturbing your kept work.
+
+17
+00:00:50,900 --> 00:00:53,167
+When a direction feels right, choose Keep.
+
+18
+00:00:53,433 --> 00:00:56,100
+Meant saves that exact result as a durable revision.
+
+19
+00:00:56,133 --> 00:00:58,333
+If you change your mind, choose Undo.
+
+20
+00:00:58,367 --> 00:01:01,733
+Meant restores the earlier result without erasing what happened.
+
+21
+00:01:02,200 --> 00:01:04,800
+History preserves both the change and the recovery,
+
+22
+00:01:04,833 --> 00:01:07,900
+so you never have to trade experimentation for control.
+
+23
+00:01:08,500 --> 00:01:10,567
+The agent can inspect, create, and propose.
+
+24
+00:01:10,900 --> 00:01:12,967
+It can ask to Keep, Discard, or Undo.
+
+25
+00:01:13,167 --> 00:01:16,000
+You make the consequential decision, and Meant records it visibly.
+
+26
+00:01:18,633 --> 00:01:20,300
+That changes the creative process.
+
+27
+00:01:20,300 --> 00:01:23,967
+You spend less time translating intent into interface mechanics.
+
+28
+00:01:23,967 --> 00:01:26,967
+You can explore more directions without losing the good ones.
+
+29
+00:01:26,967 --> 00:01:29,633
+And instead of accepting a flattened answer,
+
+30
+00:01:29,633 --> 00:01:31,967
+you shape the real artifact through conversation.
+
+31
+00:01:31,967 --> 00:01:34,967
+The distance between what you imagine and what you can make gets shorter.
+
+32
+00:01:34,967 --> 00:01:36,800
+Your idea stays visible.
+
+33
+00:01:36,800 --> 00:01:37,800
+Every decision stays yours.
+
+34
+00:01:39,533 --> 00:01:41,333
+Meant. Make what you mean.
+
