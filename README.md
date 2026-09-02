@@ -10,8 +10,9 @@ Meant is a conversational creative editor where people direct outcomes in ordina
 
 - Live product: [meant.protoperfect.io](https://meant.protoperfect.io/)
 - Product film: [YouTube](https://youtu.be/gMgNfCyZ7oE)
-- Devpost: pending final submission approval
-- Protoperfect Labs case study: drafted; publication follows final approval
+- Devpost: [Meant — WebMCP Challenge entry](https://devpost.com/software/meant)
+- Protoperfect Labs case study: [Meant: Intention Made Editable](https://protoperfect.io/research/meant-intention-made-editable)
+- Launch thread: [Protoperfect on X](https://x.com/protoperfect/status/2095284116031742293)
 - Build story: [HOW_WE_MADE_IT.md](HOW_WE_MADE_IT.md)
 - Judge walkthrough: [JUDGE_GUIDE.md](JUDGE_GUIDE.md)
 - Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
