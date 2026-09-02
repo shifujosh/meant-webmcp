@@ -8,7 +8,7 @@ Meant is a conversational creative editor where people direct outcomes in ordina
 
 ## Submission links
 
-- Live product: [meant-webmcp.joshualora.workers.dev](https://meant-webmcp.joshualora.workers.dev/)
+- Live product: [meant.protoperfect.io](https://meant.protoperfect.io/)
 - Product film: [YouTube](https://youtu.be/gMgNfCyZ7oE)
 - Devpost: pending final submission approval
 - Protoperfect Labs case study: drafted; publication follows final approval
@@ -104,7 +104,7 @@ The public snapshot passed:
 - 3/3 isolated D1 model-admission checks; and
 - a real-browser/D1 product walkthrough with 42 assertions, two actual concurrency races, desktop, 390×844 mobile, and 768×844 touch verification.
 
-The hosted verification ran against Cloudflare Worker version `73af8af3-aa27-4b18-bd98-286caf3f14e1` and confirmed durable Keep, reload, Discard, History, revisioned Undo, security headers, closed production test routes, and a clean browser console.
+The full hosted product-loop verification confirmed durable Keep, reload, Discard, History, revisioned Undo, security headers, closed production test routes, and a clean browser console. The active custom-domain release is Cloudflare Worker version `0c362357-5481-48bd-a110-85bae0b8b91f`; `https://meant.protoperfect.io/` was then independently rechecked for HTTPS, hardened session cookies, closed production test routes, all seven WebMCP tools, correct rendering, and a clean browser console.
 
 ## Media
 

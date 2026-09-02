@@ -11,6 +11,12 @@
       "globs": ["**/*.js", "**/*.mjs"]
     }
   ],
+  "routes": [
+    {
+      "pattern": "meant.protoperfect.io",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "dist/client"
   },

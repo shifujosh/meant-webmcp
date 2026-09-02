@@ -75,7 +75,7 @@ We want to deepen the composition system with reusable brand contracts, richer v
 
 ## Links
 
-- Live project: `https://meant-webmcp.joshualora.workers.dev/`
+- Live project: `https://meant.protoperfect.io/`
 - Public source: `https://github.com/shifujosh/meant-webmcp`
 - Public demo video: `https://youtu.be/gMgNfCyZ7oE`
 - Protoperfect Labs case study: drafted; publication follows final approval

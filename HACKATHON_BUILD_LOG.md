@@ -12,7 +12,7 @@ Meant builds on earlier design-editor and transaction-protocol experiments. The 
 | Aug 28 | Added relational design intelligence, latency controls, revision-bound D1 transactions, browser proof, and durable recovery. |
 | Aug 29 | Added submission documentation and the MIT license. |
 | Aug 31 | Built the conversational composition studio for decks, posters, and infographics. |
-| Sep 2 | Completed the seven-tool WebMCP surface, explicit human consequence boundary, responsive product loop, native browser-agent verification, security hardening, final Remotion film, and public submission snapshot. |
+| Sep 2 | Completed the seven-tool WebMCP surface, explicit human consequence boundary, responsive product loop, native browser-agent verification, security hardening, final Remotion film, public submission snapshot, and verified `meant.protoperfect.io` release. |
 
 ## Eligible implementation range
 
@@ -42,3 +42,4 @@ Meant builds on earlier design-editor and transaction-protocol experiments. The 
 - Isolated D1 model-admission suite: 3/3 passed.
 - Browser/D1 walkthrough: 42 assertions across seven sections plus two actual concurrency races.
 - Formal source review before the dependency refresh: zero reportable findings. The final refresh hardened build dependencies, restored the D1 integration harness for the current Miniflare API, and added isolated direct-browser sessions without changing the human consequence boundary.
+- Active custom-domain release: Cloudflare Worker version `0c362357-5481-48bd-a110-85bae0b8b91f` at `https://meant.protoperfect.io/`; HTTPS, security headers, hardened browser sessions, seven WebMCP tools, production-only route closures, rendered product state, and browser-console cleanliness rechecked after attachment.

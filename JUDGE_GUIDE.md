@@ -6,7 +6,7 @@ Use ChatGPT’s in-app browser, or Google Chrome 149+ with `chrome://flags/#enab
 
 ## Product walkthrough
 
-1. Open [Meant](https://meant-webmcp.joshualora.workers.dev/).
+1. Open [Meant](https://meant.protoperfect.io/).
 2. Choose **New composition**, select **Poster**, and enter: **Create a poster about a neighborhood climate action plan.**
 3. Confirm the result is labeled **Exploring** and the kept revision has not advanced.
 4. Select the title and enter: **Make the opening title coral and a little more editorial.**
