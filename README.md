@@ -132,7 +132,6 @@ Meant was built to explore how creative software changes when agents and people 
 - Launch thread: [Protoperfect on X](https://x.com/protoperfect/status/2095284116031742293)
 - Product and WebMCP walkthrough: [docs/walkthrough.md](docs/walkthrough.md)
 - Architecture details: [ARCHITECTURE.md](ARCHITECTURE.md)
-- Media assets: [`media/`](media/)
 
 ## License
 
