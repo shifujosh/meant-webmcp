@@ -1,120 +1,139 @@
 # Meant
 
-**Make what you mean.**
+**Meant is a conversational creative editor where people direct outcomes in ordinary language, agents work through the same semantic canvas and tools, and every consequential change stays human-controlled.**
 
-Meant is a conversational creative editor where people direct outcomes in ordinary language, agents work through the same semantic canvas and tools, and every consequential change stays visible, reversible, and human-controlled.
+Creative direction begins as meaning: make the title quieter, give the page more room, or make the story feel more grounded. Conventional creative software asks people to translate that intention into layers, coordinates, panels, and property names before they can evaluate the result.
+
+Meant lets a person shape real artifacts conversationally without turning the product into a chatbot. The canvas remains central; conversation directs it. Agents inspect the same semantic document, propose reversible directions on an Exploring branch, and leave consequential decisions under explicit human control.
 
 ![Meant — Make what you mean](media/demo/meant-youtube-thumbnail.png)
 
-## Submission links
+## The outcome
 
-- Live product: [meant.protoperfect.io](https://meant.protoperfect.io/)
-- Product film: [YouTube](https://youtu.be/gMgNfCyZ7oE)
-- Devpost: [Meant — WebMCP Challenge entry](https://devpost.com/software/meant)
-- Protoperfect Labs case study: [Meant: Intention Made Editable](https://protoperfect.io/research/meant-intention-made-editable)
-- Launch thread: [Protoperfect on X](https://x.com/protoperfect/status/2095284116031742293)
-- Build story: [HOW_WE_MADE_IT.md](HOW_WE_MADE_IT.md)
-- Judge walkthrough: [JUDGE_GUIDE.md](JUDGE_GUIDE.md)
-- Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
-- Hackathon change log: [HACKATHON_BUILD_LOG.md](HACKATHON_BUILD_LOG.md)
+A directed creative session provides:
 
-This repository is the clean, runnable public submission snapshot. Ongoing product development and private release operations remain in separate working repositories.
+- a structured composition document (decks, posters, infographics) rendered directly in the editor, rather than opaque pixel screenshots;
+- an explicit **Exploring** branch for cumulative, non-destructive refinement;
+- side-by-side **Compare** between the kept artifact and temporary directions;
+- person-owned **Keep** and **Discard** decisions backed by D1 compare-and-swap persistence;
+- non-destructive **Undo** that creates a newer revert revision while preserving complete provenance in **History**;
+- seven registered **WebMCP** tools allowing browser agents to inspect context, compile plain-language intent, and preview bounded operations through the same semantic rules.
 
-## The problem
+## How it works
 
-Creative direction starts as meaning: make the title quieter, give the page more room, or make the story feel more grounded. Conventional creative software asks people to translate that intent into layers, coordinates, panels, and property names before they can judge the result.
+```text
+Ordinary-language direction (or touch / WebMCP)
+        ↓
+Bounded operation compiler & schema validation
+        ↓
+Exploring branch preview (immutable)
+        ↓
+Side-by-side Compare
+        ↓
+Visible human decision (Keep / Discard)
+        ↓
+D1 compare-and-swap transaction & immutable History
+```
 
-Agents remove some of that translation burden only when they understand more than pixels. They need the same semantic canvas, active selection, valid operations, draft state, revision, and recovery tools that the person uses. Otherwise, they work through layers of abstraction that produce generic or incorrect results.
+The editor coordinates canvas state, draft exploration, and persistence asynchronously.
 
-Meant lets a person shape the real artifact conversationally without turning the product into a chatbot. The canvas stays central. Conversation directs it.
+The production stack uses:
 
-## The product loop
+- **Cloudflare Workers** and **Cloudflare Pages** for edge hosting and runtime;
+- **Cloudflare D1** for transactional compare-and-swap persistence and append-only revision history;
+- **WebMCP** (registered on `document.modelContext`) for browser-agent tool discovery and execution;
+- **React 19**, **Vite**, and **Tailwind CSS** for the responsive creative studio;
+- **TypeScript** and **Zod** for strict schema validation across all tool and operation boundaries;
+- **SQLite** as a local persistence fallback.
 
-1. **Say it.** Start a deck, poster, or infographic with an ordinary-language brief.
-2. **See it.** Meant renders a structured artifact inside the editor.
-3. **Shape it.** Refine a selected title, frame, or object through language, touch, or a browser agent.
-4. **Compare it.** Inspect the kept artifact beside the temporary Exploring direction.
-5. **Keep or discard it.** Only the visible person-owned controls create consequence.
-6. **Change your mind.** Undo creates a newer revert revision while History preserves both events.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the component model, operation registry, persistence guarantees, and security posture.
 
-Every proposal begins as **Exploring**. The kept revision does not advance until the person chooses **Keep**. **Discard** removes only the temporary direction. **Undo** restores the prior artifact without deleting provenance.
+## WebMCP tools
 
-## Why WebMCP
-
-Meant registers seven tools on `document.modelContext`:
+Meant registers seven bounded tools on `document.modelContext`:
 
 | Tool | Outcome |
 | --- | --- |
 | `get_composition_context` | Reads the active composition, selection, current revision, Exploring draft, and recent history. |
 | `create_composition_draft` | Starts a deck, poster, or infographic as a reversible Exploring proposal. |
-| `preview_composition_turn` | Compiles one ordinary-language direction into bounded semantic operations. |
+| `preview_composition_turn` | Compiles an ordinary-language direction into bounded semantic operations. |
 | `preview_composition_change` | Previews exact validated operations without committing history. |
-| `keep_composition_draft` | Requests the visible human Keep decision; it never commits by itself. |
-| `discard_composition_draft` | Requests visible human confirmation before dropping the Exploring branch. |
-| `undo_composition_change` | Requests visible human confirmation for one exact revision-bound revert. |
+| `keep_composition_draft` | Requests human confirmation for the visible Keep decision; never commits autonomously. |
+| `discard_composition_draft` | Requests human confirmation before dropping the Exploring branch. |
+| `undo_composition_change` | Requests human confirmation for an exact revision-bound revert. |
 
 The page tools and visible interface share one operation registry and one transaction path. An agent cannot bypass selection, schema validation, revision checks, Keep, or History.
 
-## What is real in this submission
+## Trust boundary
 
-- The canvas contains a structured composition document, not a generated screenshot.
-- Exploring, cumulative refinement, Compare, Keep, Discard, reload persistence, Undo, and History operate on the real artifact.
-- Keep uses D1 compare-and-swap persistence and immutable history.
-- Undo adds a revert revision and retains the original change.
-- WebMCP tools inspect and preview through the same bounded operations as text and visible controls.
-- Agent-side Keep, Discard, and Undo return confirmation requests; the visible person-owned controls perform the action.
-- ChatGPT-hosted requests use platform identity. Direct browser visitors receive separate high-entropy, `HttpOnly`, `Secure`, same-site sessions so durable work remains isolated without a shared demo credential.
-- The product film uses verified captures from the working application whenever functioning product behavior is shown.
+- **Semantic structure over opaque pixels**: The canvas contains structured frames, layout modes, and semantic nodes rather than generated images.
+- **Separate exploration from consequence**: Proposals apply immutably to an Exploring branch. The durable revision does not advance until the person chooses Keep.
+- **Human-in-the-loop authority**: WebMCP tools can inspect and propose, but consequential actions (Keep, Discard, Undo) return confirmation requests; only visible person-owned controls perform them.
+- **Revision-bound persistence**: D1 transactions use compare-and-swap concurrency checks to prevent stale overwrites and race conditions.
+- **Undo as history**: Undo appends a newer revert revision rather than destructively erasing history, keeping both events inspectable after reload.
+- **Session isolation**: Direct browser visitors receive separate high-entropy, `HttpOnly`, `Secure`, same-site sessions so work remains isolated without shared credentials.
+- **Deterministic core**: The complete editor, WebMCP surface, and transaction loop operate deterministically without requiring third-party model credentials.
 
-Realtime voice integration is present but production-default-off. The complete judged path uses text, visible controls, and WebMCP and does not require a product-audio round trip.
+The public walkthrough demonstrates the complete workflow without external model dependencies. See [docs/walkthrough.md](docs/walkthrough.md) for a step-by-step guide.
 
 ## Local setup
 
-Requirements: Node.js 22.13 or later and npm.
+### Requirements
+
+- Node.js 22.13+
+- npm
+
+### Install and run
 
 ```bash
 git clone https://github.com/shifujosh/meant-webmcp.git
 cd meant-webmcp
+
 npm ci
 npm run db:local:init
 cp .env.example .env.local
 npm run dev
 ```
 
-Open the URL printed by Vite. The deterministic editor, WebMCP registration, and local D1 Keep/Undo loop work without an API key.
+Open the local URL printed by Vite. The deterministic editor, WebMCP registration, and local D1 Keep/Undo loop work fully offline without an API key.
 
-Optional model-backed services require `OPENAI_API_KEY` in `.env.local`. Realtime voice additionally requires `MEANT_ENABLE_REALTIME_VOICE=true`; leave it disabled unless provider-side spend limits and monitoring are configured.
+Set `OPENAI_API_KEY` in `.env.local` for optional model-backed compilation. Never commit `.env.local` or put credentials in URLs, screenshots, logs, or recordings.
 
-The hosted release uses [`wrangler.production.jsonc`](wrangler.production.jsonc), a dedicated Cloudflare Worker, and a dedicated D1 database. Build with `npm run build`, initialize the D1 schema from `scripts/init-local-db.sql`, and deploy with `npx wrangler deploy --config wrangler.production.jsonc` from an authenticated Cloudflare environment.
-
-## Verification
+## Tests
 
 ```bash
 npm run typecheck
 npm run lint
 npm test
-npm audit
 ```
 
-The public snapshot passed:
+The public suite covers composition schema validation, operation compilation, Exploring branch immutability, revision-bound D1 transactions, undo-revert history, concurrency conflict recovery, session isolation, and the seven WebMCP tool contracts.
 
-- production build and TypeScript;
-- 152 automated cases, 152 passed;
-- lint and diff checks;
-- zero known npm advisories across production and development dependencies;
-- 3/3 isolated D1 model-admission checks; and
-- a real-browser/D1 product walkthrough with 42 assertions, two actual concurrency races, desktop, 390×844 mobile, and 768×844 touch verification.
+## Cloudflare deployment
 
-The full hosted product-loop verification confirmed durable Keep, reload, Discard, History, revisioned Undo, security headers, closed production test routes, and a clean browser console. The active custom-domain release is Cloudflare Worker version `0c362357-5481-48bd-a110-85bae0b8b91f`; `https://meant.protoperfect.io/` was then independently rechecked for HTTPS, hardened session cookies, closed production test routes, all seven WebMCP tools, correct rendering, and a clean browser console.
+Build and deploy to Cloudflare Workers with a dedicated D1 database:
 
-## Media
+```bash
+npm run build
+npx wrangler deploy --config wrangler.production.jsonc
+```
 
-- Final product film, captions, and thumbnail: [`media/demo/`](media/demo/)
-- Verified product-loop clips: [`media/product/`](media/product/)
-- Six-slide product and submission deck: [`media/deck/`](media/deck/)
+The deployment script configures Cloudflare Workers, D1 persistence, and production security headers. Initialize the database schema with `scripts/init-local-db.sql` before running production migrations.
 
-![Meant deck contact sheet](media/deck/contact-sheet.png)
+## How it was made
+
+Meant was built to explore how creative software changes when agents and people share the same semantic canvas and authority boundaries. The concise [creation story](HOW_IT_WAS_MADE.md) documents the architectural evolution, the WebMCP integration, the design intelligence engine, and the production workflow.
+
+## Documentation and media
+
+- Live product: [meant.protoperfect.io](https://meant.protoperfect.io/)
+- Product film: [YouTube](https://youtu.be/gMgNfCyZ7oE)
+- Case study: [Protoperfect Labs](https://protoperfect.io/research/meant-intention-made-editable)
+- Launch thread: [Protoperfect on X](https://x.com/protoperfect/status/2095284116031742293)
+- Product and WebMCP walkthrough: [docs/walkthrough.md](docs/walkthrough.md)
+- Architecture details: [ARCHITECTURE.md](ARCHITECTURE.md)
+- Media assets: [`media/`](media/)
 
 ## License
 
-[MIT](LICENSE) © 2026 Joshua Lora.
+Meant is available under the [MIT License](LICENSE).

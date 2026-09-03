@@ -1,6 +1,6 @@
-# Judge guide
+# Product & WebMCP Walkthrough
 
-Expected time: about three minutes.
+A three-minute guided walkthrough to evaluate Meant and its WebMCP integration.
 
 Use ChatGPT’s in-app browser, or Google Chrome 149+ with `chrome://flags/#enable-webmcp-testing` enabled.
 
@@ -36,4 +36,4 @@ Use ChatGPT’s in-app browser, or Google Chrome 149+ with `chrome://flags/#enab
 - The agent uses the same semantic canvas and bounded operations as the person.
 - The agent cannot perform Keep, Discard, or Undo without a visible human decision.
 
-Realtime voice is not required for judging. Text, visible controls, and WebMCP provide the complete working path.
+Text, visible controls, and WebMCP provide the complete working path.
