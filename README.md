@@ -8,6 +8,33 @@ Meant lets a person shape real artifacts conversationally without turning the pr
 
 ![Meant — Make what you mean](media/demo/meant-youtube-thumbnail.png)
 
+## Connect your agent
+
+The live service is available at `https://meant.protoperfect.io/mcp`. The calling agent uses the person's existing subscription for interpretation and visual judgment; Meant supplies deterministic composition operations, rendering, OAuth, and revision-safe persistence without receiving the provider API key.
+
+Install the public Codex marketplace and Meant plugin:
+
+```bash
+codex plugin marketplace add shifujosh/meant-webmcp
+codex plugin add meant@meant-labs
+```
+
+Then open a new Codex task and ask it to connect to your Meant workspace. OAuth opens the Meant consent screen, binds the agent to the workspace you choose, and grants separate read, draft, commit, and undo scopes.
+
+Any Streamable HTTP MCP client can connect directly:
+
+```json
+{
+  "mcpServers": {
+    "meant": { "url": "https://meant.protoperfect.io/mcp" }
+  }
+}
+```
+
+The installable package is intentionally small: [the manifest](plugins/meant/.codex-plugin/plugin.json), [remote MCP configuration](plugins/meant/.mcp.json), and [agent workflow](plugins/meant/skills/meant/SKILL.md). It contains no private application source or provider credentials.
+
+This repository is the public distribution surface for the current remote Meant service and the preserved, runnable WebMCP submission snapshot. Ongoing product development and private release operations remain in separate working repositories.
+
 ## The outcome
 
 A directed creative session provides:
@@ -50,7 +77,9 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the component model, operation regist
 
 ## WebMCP tools
 
-Meant registers seven bounded tools on `document.modelContext`:
+The current hosted service exposes nine composition tools, adding deterministic render and verification evidence to the original seven-tool browser surface preserved in this snapshot.
+
+The preserved public snapshot registers seven bounded tools on `document.modelContext`:
 
 | Tool | Outcome |
 | --- | --- |
