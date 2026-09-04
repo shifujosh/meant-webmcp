@@ -13,6 +13,8 @@
     "test": "npm run build && npm run typecheck && node --test --test-concurrency=1 tests/*.test.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
+    "eval:agents": "node scripts/evaluate-agent-contract.mjs",
+    "verify:plugin": "node scripts/verify-agent-plugin.mjs",
     "test:model-admission-d1": "node --test --test-concurrency=1 tests/model-admission-d1.integration.mjs",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
     "db:local:init": "WRANGLER_LOG_PATH=.wrangler/wrangler.log wrangler d1 execute DB --local --config wrangler.local.jsonc --persist-to .wrangler/state --file scripts/init-local-db.sql"

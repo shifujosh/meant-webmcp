@@ -19,7 +19,7 @@ codex plugin marketplace add shifujosh/meant-webmcp
 codex plugin add meant@meant-labs
 ```
 
-Then open a new Codex task and ask it to connect to your Meant workspace. OAuth opens the Meant consent screen, binds the agent to the workspace you choose, and grants separate read, draft, commit, and undo scopes.
+Then open a new Codex task and ask it to connect to Meant. OAuth can create a fresh workspace on the consent screen or bind the agent to an existing workspace in that browser, with separate read, draft, commit, and undo scopes. Meant supports Client ID Metadata Documents (CIMD) and retains Dynamic Client Registration for compatible clients.
 
 Any Streamable HTTP MCP client can connect directly:
 
@@ -77,9 +77,9 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the component model, operation regist
 
 ## WebMCP tools
 
-The current hosted service exposes nine composition tools, adding deterministic render and verification evidence to the original seven-tool browser surface preserved in this snapshot.
+The current hosted service exposes nine composition tools, adding deterministic render, verification evidence, structured recovery, and an embedded review surface to the original seven-tool browser surface preserved in this snapshot.
 
-The preserved public snapshot registers seven bounded tools on `document.modelContext`:
+The hosted remote server provides this nine-tool catalog (the runnable public snapshot preserves the original seven browser-native implementations):
 
 | Tool | Outcome |
 | --- | --- |
@@ -89,7 +89,11 @@ The preserved public snapshot registers seven bounded tools on `document.modelCo
 | `preview_composition_change` | Previews exact validated operations without committing history. |
 | `keep_composition_draft` | Requests human confirmation for the visible Keep decision; never commits autonomously. |
 | `discard_composition_draft` | Requests human confirmation before dropping the Exploring branch. |
+| `get_verification_context` | Returns before/after documents, requested operations, design contract, and critique rubric. |
+| `get_composition_render` | Returns a deterministic SVG and opens the portable Meant review UI where supported. |
 | `undo_composition_change` | Requests human confirmation for an exact revision-bound revert. |
+
+Every hosted result includes server version, workspace URL, current state and revision, and machine-readable next actions. Errors use stable recovery codes so an agent can refresh stale state or ask for authorization instead of guessing.
 
 The page tools and visible interface share one operation registry and one transaction path. An agent cannot bypass selection, schema validation, revision checks, Keep, or History.
 
@@ -134,9 +138,10 @@ Set `OPENAI_API_KEY` in `.env.local` for optional model-backed compilation. Neve
 npm run typecheck
 npm run lint
 npm test
+node scripts/verify-agent-plugin.mjs
 ```
 
-The public suite covers composition schema validation, operation compilation, Exploring branch immutability, revision-bound D1 transactions, undo-revert history, concurrency conflict recovery, session isolation, and the seven WebMCP tool contracts.
+The public suite covers composition schema validation, operation compilation, Exploring branch immutability, revision-bound D1 transactions, undo-revert history, concurrency conflict recovery, session isolation, the preserved seven-tool WebMCP contract, and representative hosted-agent workflows across the nine-tool remote catalog.
 
 ## Cloudflare deployment
 
@@ -161,6 +166,11 @@ Meant was built to explore how creative software changes when agents and people 
 - Launch thread: [Protoperfect on X](https://x.com/protoperfect/status/2095284116031742293)
 - Product and WebMCP walkthrough: [docs/walkthrough.md](docs/walkthrough.md)
 - Architecture details: [ARCHITECTURE.md](ARCHITECTURE.md)
+- Universal plugin submission pack: [PLUGIN_SUBMISSION.md](PLUGIN_SUBMISSION.md)
+- Agent tool roadmap: [ROADMAP.md](ROADMAP.md)
+- Privacy: [meant.protoperfect.io/privacy](https://meant.protoperfect.io/privacy)
+- Terms: [meant.protoperfect.io/terms](https://meant.protoperfect.io/terms)
+- Support: [meant.protoperfect.io/support](https://meant.protoperfect.io/support)
 
 ## License
 
