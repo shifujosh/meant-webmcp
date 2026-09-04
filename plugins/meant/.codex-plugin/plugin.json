@@ -1,7 +1,7 @@
 {
   "name": "meant",
-  "version": "0.1.0",
-  "description": "Shape Meant compositions with your own Codex subscription while preserving explicit Keep, Discard, and Undo authority.",
+  "version": "0.2.0",
+  "description": "Shape Meant compositions with your own agent subscription through self-guiding, human-controlled tools.",
   "author": {
     "name": "Protoperfect Labs",
     "url": "https://protoperfect.io"
@@ -13,11 +13,11 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Meant",
-    "shortDescription": "Shape Meant with your Codex subscription.",
-    "longDescription": "Connect Codex to a Meant workspace, propose reversible composition drafts, inspect deterministic visual evidence, and keep or undo work only with explicit human approval.",
+    "shortDescription": "Shape Meant with your own agent.",
+    "longDescription": "Connect an agent to a new or existing Meant workspace, propose reversible composition drafts, inspect deterministic visual evidence in an embedded review surface, and Keep, Discard, or Undo work only through explicit human decisions.",
     "developerName": "Protoperfect Labs",
     "category": "Productivity",
-    "capabilities": ["Remote MCP", "OAuth", "Composition editing"],
+    "capabilities": ["Remote MCP", "OAuth with CIMD", "Composition editing", "Embedded review UI"],
     "websiteURL": "https://meant.protoperfect.io",
     "brandColor": "#F04B32",
     "defaultPrompt": [

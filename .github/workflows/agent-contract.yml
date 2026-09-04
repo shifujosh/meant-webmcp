@@ -1,0 +1,29 @@
+name: Public agent contract
+
+on:
+  pull_request:
+    paths:
+      - "plugins/meant/**"
+      - "evals/**"
+      - "scripts/evaluate-agent-contract.mjs"
+      - "scripts/verify-agent-plugin.mjs"
+      - "PLUGIN_SUBMISSION.md"
+      - "ROADMAP.md"
+      - ".github/workflows/agent-contract.yml"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+      - run: npm run eval:agents
+      - run: npm run verify:plugin
