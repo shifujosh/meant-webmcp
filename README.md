@@ -141,7 +141,16 @@ npm test
 node scripts/verify-agent-plugin.mjs
 ```
 
-The public suite covers composition schema validation, operation compilation, Exploring branch immutability, revision-bound D1 transactions, undo-revert history, concurrency conflict recovery, session isolation, the preserved seven-tool WebMCP contract, and representative hosted-agent workflows across the nine-tool remote catalog.
+`npm test` covers composition schemas, operation compilation, Exploring branch
+immutability, module behavior, and source contracts. Agent evaluations and plugin
+verification check the public integration contract separately.
+
+Run `npm run test:model-admission-d1` for local database rollback and request-counter
+concurrency checks. The exported browser suites in `tests/browser-d1.integration.mjs`
+and `tests/composition-browser-d1.integration.mjs` exercise actual D1 writes, reload,
+undo history, human confirmation, and two-page revision races through the editor.
+Those suites require a browser harness and a disposable local application/database;
+report their execution separately from the module and source-contract tests.
 
 ## Cloudflare deployment
 

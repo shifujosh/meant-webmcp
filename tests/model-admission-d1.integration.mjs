@@ -37,6 +37,7 @@ const sql = {
 
 async function createDatabase() {
   const runtime = new Miniflare(convertV4MiniflareOptions({
+    cf: false,
     modules: true,
     script: "export default { fetch() { return new Response('ok') } }",
     d1Databases: { DB: "model-admission-integration" },

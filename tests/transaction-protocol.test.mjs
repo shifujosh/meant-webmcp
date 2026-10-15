@@ -123,59 +123,6 @@ test("deterministic postconditions pass only after the exact target changes", ()
   assert.deepEqual(result.affectedTargetIds, ["web-headline"]);
 });
 
-class DurableStore {
-  constructor(project) { this.project = structuredClone(project); this.revision = 1; this.history = []; this.failNext = false; this.queue = Promise.resolve(); }
-  transact(expectedRevision, changeId, mutate) {
-    const run = async () => {
-      if (this.failNext) { this.failNext = false; throw new Error("simulated persistence failure"); }
-      if (this.revision !== expectedRevision) return { ok: false, conflict: true, authoritativeRevision: this.revision };
-      const before = structuredClone(this.project);
-      const after = mutate(structuredClone(this.project));
-      this.project = after;
-      this.revision += 1;
-      this.history.unshift({ id: changeId, parentRevision: expectedRevision, revision: this.revision, before, after: structuredClone(after) });
-      return { ok: true, committedChangeId: changeId, newRevision: this.revision };
-    };
-    const result = this.queue.then(run, run);
-    this.queue = result.then(() => undefined, () => undefined);
-    return result;
-  }
-  undo(changeId, expectedRevision) {
-    return this.transact(expectedRevision, `revert-${changeId}`, () => {
-      const change = this.history.find((item) => item.id === changeId);
-      if (!change || change.revision !== expectedRevision) throw new Error("explicit rebase required");
-      return structuredClone(change.before);
-    });
-  }
-}
-
-test("failure-first: success is never acknowledged when persistence fails", async () => {
-  const store = new DurableStore(seedProject);
-  store.failNext = true;
-  await assert.rejects(store.transact(1, "change-fail", (project) => project), /persistence failure/);
-  assert.equal(store.revision, 1);
-  assert.equal(store.history.length, 0);
-});
-
-test("success acknowledgement follows durable project and history persistence", async () => {
-  const store = new DurableStore(seedProject);
-  const result = await store.transact(1, "change-ok", (project) => ({ ...project, name: "Durable" }));
-  assert.deepEqual(result, { ok: true, committedChangeId: "change-ok", newRevision: 2 });
-  assert.equal(store.project.name, "Durable");
-  assert.equal(store.history[0].id, "change-ok");
-});
-
-test("reload-persistent undo requires the explicit latest change and creates a revert commit", async () => {
-  const store = new DurableStore(seedProject);
-  await store.transact(1, "change-1", (project) => ({ ...project, name: "Changed" }));
-  const reloaded = store;
-  await assert.rejects(reloaded.undo("missing", 2), /rebase required/);
-  const result = await reloaded.undo("change-1", 2);
-  assert.equal(result.ok, true);
-  assert.equal(reloaded.project.name, seedProject.name);
-  assert.equal(reloaded.history[0].id, "revert-change-1");
-});
-
 test("the retained development editor bootstraps the authoritative project, workspace, and revision", async () => {
   const projectRoute = await readFile(new URL("../app/api/project/route.ts", import.meta.url), "utf8");
   const studio = await readFile(new URL("../app/studio.tsx", import.meta.url), "utf8");
@@ -185,24 +132,6 @@ test("the retained development editor bootstraps the authoritative project, work
   assert.match(studio, /revision: projectRevisionRef\.current/);
   assert.match(projectRoute, /inserted\[0\]\?\.payload !== payload/);
   assert.match(projectRoute, /Project bootstrap conflict/);
-});
-
-test("20 repeated two-tab races lose no updates and permit no stale apply or cross-revision undo", async () => {
-  for (let run = 0; run < 20; run += 1) {
-    const store = new DurableStore(seedProject);
-    const [left, right] = await Promise.all([
-      store.transact(1, `left-${run}`, (project) => ({ ...project, brief: `left-${run}` })),
-      store.transact(1, `right-${run}`, (project) => ({ ...project, brief: `right-${run}` })),
-    ]);
-    assert.equal([left, right].filter((result) => result.ok).length, 1);
-    assert.equal([left, right].filter((result) => result.conflict && result.authoritativeRevision === 2).length, 1);
-    const winner = left.ok ? `left-${run}` : `right-${run}`;
-    const followup = await store.transact(2, `followup-${run}`, (project) => ({ ...project, name: `followup-${run}` }));
-    assert.equal(followup.ok, true);
-    await assert.rejects(store.undo(winner, 3), /rebase required/);
-    assert.equal(store.revision, 3);
-    assert.equal(store.history.filter((entry) => !entry.id.startsWith("revert-")).length, 2);
-  }
 });
 
 test("source contract disables whole-project PUT and verifies before atomic D1 batch acknowledgement", async () => {
